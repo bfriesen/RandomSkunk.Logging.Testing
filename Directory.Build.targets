@@ -4,6 +4,7 @@
     <PropertyGroup>
         <LangVersion>latest</LangVersion>
 		<Nullable>enable</Nullable>
+		<DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(PackageId).xml</DocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>

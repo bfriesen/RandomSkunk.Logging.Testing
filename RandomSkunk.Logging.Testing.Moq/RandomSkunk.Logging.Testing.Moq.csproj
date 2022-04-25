@@ -2,28 +2,27 @@
 
   <PropertyGroup>
     <TargetFrameworks>net461;net6.0;netstandard2.0;netstandard2.1;</TargetFrameworks>
-	<RootNamespace>Microsoft.Extensions.Logging</RootNamespace>
+	<RootNamespace>Moq</RootNamespace>
 
 	<PackageVersion>1.0.0-alpha00</PackageVersion>
-    <Title>RandomSkunk.Logging.Testing</Title>
-    <Description>Mock logger implementations for Microsoft.Extensions.Logging.</Description>
+    <Title>RandomSkunk.Logging.Testing.Moq</Title>
+    <Description>Mock logger implementations for Moq and Microsoft.Extensions.Logging.</Description>
 	<Authors>Brian Friesen</Authors>
 	<Copyright>Copyright 2022 (c) Brian Friesen. All rights reserved.</Copyright>
 
-	<PackageId>RandomSkunk.Logging.Testing</PackageId>
-	<PackageProjectUrl>https://github.com/bfriesen/RandomSkunk.Logging.Testing</PackageProjectUrl>
+	<PackageId>RandomSkunk.Logging.Testing.Moq</PackageId>
+	<PackageProjectUrl>https://github.com/bfriesen/RandomSkunk.Logging.Testing.Moq</PackageProjectUrl>
 	<PackageTags>mock-logger mock logger logging</PackageTags>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageIcon>icon.png</PackageIcon>
 	<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-	<PackageReleaseNotes>https://github.com/bfriesen/RandomSkunk.Logging.Testing/blob/main/CHANGELOG.md</PackageReleaseNotes>
+	<PackageReleaseNotes>https://github.com/bfriesen/RandomSkunk.Logging.Testing.Moq/blob/main/CHANGELOG.md</PackageReleaseNotes>
 
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PublishRepositoryUrl>True</PublishRepositoryUrl>
 	<EmbedUntrackedSources>True</EmbedUntrackedSources>
     <DebugType>Embedded</DebugType>
-    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(PackageId).xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
