@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+### Added
+
+- Add overload of `VerifyLog` that doesn't have a `configureQuery` parameter, which makes verifying any log invocation easier.
+
 ## [1.0.0] - 2022-04-25
 
 ### Added

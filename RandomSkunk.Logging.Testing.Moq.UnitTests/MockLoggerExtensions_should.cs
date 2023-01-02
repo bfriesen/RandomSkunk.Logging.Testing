@@ -25,11 +25,7 @@ namespace Moq.UnitTests
 
             mockLogger.Object.LogInformation("Hello, world!");
 
-            mockLogger.Verify(m => m.Log(
-                LogLevel.Information,
-                It.IsAny<EventId>(),
-                "Hello, world!",
-                null));
+            mockLogger.VerifyLog(log => log.AtInformation().WithMessage("Hello, world!"));
         }
 
         [Fact]

@@ -43,19 +43,33 @@ namespace Moq
         /// <param name="failMessage">Message to show if verification fails.</param>
         public static void VerifyLog<TLogger>(
             this Mock<TLogger> mockLogger,
-            Action<LogInvocationQuery<TLogger>> configureQuery,
+            Action<LogInvocationQuery<TLogger>>? configureQuery,
             Times? times = null,
             string? failMessage = null)
             where TLogger : TestingLogger
         {
             if (mockLogger is null)
                 throw new ArgumentNullException(nameof(mockLogger));
-            if (configureQuery is null)
-                throw new ArgumentNullException(nameof(configureQuery));
 
             var query = new LogInvocationQuery<TLogger>();
-            configureQuery(query);
+            configureQuery?.Invoke(query);
             query.Verify(mockLogger, times, failMessage);
         }
+
+        /// <summary>
+        /// Verifies that any log invocations were performed on the mock logger.
+        /// </summary>
+        /// <typeparam name="TLogger">
+        /// The type of <see cref="TestingLogger"/> that is being mocked.
+        /// </typeparam>
+        /// <param name="mockLogger">The mock logger.</param>
+        /// <param name="times">The number of times a method is expected to be called.</param>
+        /// <param name="failMessage">Message to show if verification fails.</param>
+        public static void VerifyLog<TLogger>(
+            this Mock<TLogger> mockLogger,
+            Times? times = null,
+            string? failMessage = null)
+            where TLogger : TestingLogger =>
+            mockLogger.VerifyLog(null, times, failMessage);
     }
 }
