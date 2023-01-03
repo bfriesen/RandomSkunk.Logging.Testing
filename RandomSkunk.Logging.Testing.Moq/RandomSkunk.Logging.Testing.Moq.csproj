@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net461;net6.0;netstandard2.0;netstandard2.1;</TargetFrameworks>
@@ -17,7 +17,7 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageIcon>icon.png</PackageIcon>
 	<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-	<PackageReleaseNotes>https://github.com/bfriesen/RandomSkunk.Logging.Testing.Moq/blob/main/CHANGELOG.md</PackageReleaseNotes>
+	<PackageReleaseNotes>https://github.com/bfriesen/RandomSkunk.Logging.Testing.Moq/blob/main/CHANGELOG.md#$(PackageVersion.Replace(".", ""))---$([System.DateTime]::Now.ToString("yyyy-MM-dd"))</PackageReleaseNotes>
 
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PublishRepositoryUrl>True</PublishRepositoryUrl>
@@ -30,12 +30,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.0" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
-    <PackageReference Include="Moq" Version="4.17.2" />
+    <PackageReference Include="Moq" Version="4.18.4" />
   </ItemGroup>
 
   <ItemGroup>
