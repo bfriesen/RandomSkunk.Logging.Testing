@@ -8,11 +8,7 @@ using LogLevel = Microsoft.Extensions.Logging.LogLevel;
 
 namespace Moq
 {
-    /// <summary>
-    /// Defines a query for verifying the parameters of the <see cref="TestingLogger.Log"/> method.
-    /// </summary>
-    /// <typeparam name="TLogger">The type of <see cref="TestingLogger"/> to query.</typeparam>
-    public class LogInvocationQuery<TLogger>
+    internal class LogInvocationQuery<TLogger> : ILogInvocationQuery<TLogger>
         where TLogger : TestingLogger
     {
         // Methods used when manually constructing lambda expressions.
@@ -49,112 +45,56 @@ namespace Moq
         private Expression<Func<LogLevel, bool>>? _logLevelExpression;
         private Expression<Func<EventId, bool>>? _eventIdExpression;
         private Expression<Func<string, bool>>? _messageExpression;
-        
-        // The lambda expression 
+
+        // Either the lambda expression passed to the It.Is(expression) method, or one of the marker
+        // expressions: _nullExceptionExpression or _itIsNotNullExpression.
         private LambdaExpression? _exceptionExpression;
 
         // The specific exception type to be used with _exceptionExpression. The base Exception
         // type is used if this is null.
         private Type? _exceptionType;
 
-        /// <summary>
-        /// Verify that the log was made at <see cref="LogLevel.Trace"/>.
-        /// </summary>
-        /// <returns>The same instance of <see cref="LogInvocationQuery{TLogger}"/>.</returns>
-        public LogInvocationQuery<TLogger> AtTrace() => AtLogLevel(LogLevel.Trace);
+        public ILogInvocationQuery<TLogger> AtTrace() => AtLogLevel(LogLevel.Trace);
 
-        /// <summary>
-        /// Verify that a log was made at <see cref="LogLevel.Debug"/>.
-        /// </summary>
-        /// <returns>The same instance of <see cref="LogInvocationQuery{TLogger}"/>.</returns>
-        public LogInvocationQuery<TLogger> AtDebug() => AtLogLevel(LogLevel.Debug);
+        public ILogInvocationQuery<TLogger> AtDebug() => AtLogLevel(LogLevel.Debug);
 
-        /// <summary>
-        /// Verify that a log was made at <see cref="LogLevel.Information"/>.
-        /// </summary>
-        /// <returns>The same instance of <see cref="LogInvocationQuery{TLogger}"/>.</returns>
-        public LogInvocationQuery<TLogger> AtInformation() => AtLogLevel(LogLevel.Information);
+        public ILogInvocationQuery<TLogger> AtInformation() => AtLogLevel(LogLevel.Information);
 
-        /// <summary>
-        /// Verify that a log was made at <see cref="LogLevel.Warning"/>.
-        /// </summary>
-        /// <returns>The same instance of <see cref="LogInvocationQuery{TLogger}"/>.</returns>
-        public LogInvocationQuery<TLogger> AtWarning() => AtLogLevel(LogLevel.Warning);
+        public ILogInvocationQuery<TLogger> AtWarning() => AtLogLevel(LogLevel.Warning);
 
-        /// <summary>
-        /// Verify that a log was made at <see cref="LogLevel.Error"/>.
-        /// </summary>
-        /// <returns>The same instance of <see cref="LogInvocationQuery{TLogger}"/>.</returns>
-        public LogInvocationQuery<TLogger> AtError() => AtLogLevel(LogLevel.Error);
+        public ILogInvocationQuery<TLogger> AtError() => AtLogLevel(LogLevel.Error);
 
-        /// <summary>
-        /// Verify that a log was made at <see cref="LogLevel.Critical"/>.
-        /// </summary>
-        /// <returns>The same instance of <see cref="LogInvocationQuery{TLogger}"/>.</returns>
-        public LogInvocationQuery<TLogger> AtCritical() => AtLogLevel(LogLevel.Critical);
+        public ILogInvocationQuery<TLogger> AtCritical() => AtLogLevel(LogLevel.Critical);
 
-        /// <summary>
-        /// Verify that a log was made at the specified <see cref="LogLevel"/>.
-        /// </summary>
-        /// <param name="logLevel">The log level.</param>
-        /// <returns>The same instance of <see cref="LogInvocationQuery{TLogger}"/>.</returns>
-        public LogInvocationQuery<TLogger> AtLogLevel(LogLevel? logLevel)
+        public ILogInvocationQuery<TLogger> AtLogLevel(LogLevel? logLevel)
         {
             _logLevel = logLevel;
             _logLevelExpression = null;
             return this;
         }
 
-        /// <summary>
-        /// Verify that a log was made at the level specified by the
-        /// <paramref name="matchLogLevel"/> expression.
-        /// </summary>
-        /// <param name="matchLogLevel">
-        /// An expression that defines whether a <see cref="LogLevel"/> is a match for
-        /// verification.
-        /// </param>
-        /// <returns>The same instance of <see cref="LogInvocationQuery{TLogger}"/>.</returns>
-        public LogInvocationQuery<TLogger> AtLogLevel(Expression<Func<LogLevel, bool>>? matchLogLevel)
+        public ILogInvocationQuery<TLogger> AtLogLevel(Expression<Func<LogLevel, bool>>? matchLogLevel)
         {
             _logLevel = null;
             _logLevelExpression = matchLogLevel;
             return this;
         }
 
-        /// <summary>
-        /// Verify that a log was made with the specified event ID.
-        /// </summary>
-        /// <param name="eventId">The expected event ID.</param>
-        /// <returns>The same instance of <see cref="LogInvocationQuery{TLogger}"/>.</returns>
-        public LogInvocationQuery<TLogger> WithEventId(EventId? eventId)
+        public ILogInvocationQuery<TLogger> WithEventId(EventId? eventId)
         {
             _eventId = eventId;
             _eventIdExpression = null;
             return this;
         }
 
-        /// <summary>
-        /// Verify that a log was made with the event ID specified by the
-        /// <paramref name="matchEventId"/> expression.
-        /// </summary>
-        /// <param name="matchEventId">
-        /// An expression that defines whether an <see cref="EventId"/> is a match for
-        /// verification.
-        /// </param>
-        /// <returns>The same instance of <see cref="LogInvocationQuery{TLogger}"/>.</returns>
-        public LogInvocationQuery<TLogger> WithEventId(Expression<Func<EventId, bool>>? matchEventId)
+        public ILogInvocationQuery<TLogger> WithEventId(Expression<Func<EventId, bool>>? matchEventId)
         {
             _eventId = null;
             _eventIdExpression = matchEventId;
             return this;
         }
 
-        /// <summary>
-        /// Verify that a log was made with the specified message.
-        /// </summary>
-        /// <param name="message">The expected message.</param>
-        /// <returns>The same instance of <see cref="LogInvocationQuery{TLogger}"/>.</returns>
-        public LogInvocationQuery<TLogger> WithMessage(string? message)
+        public ILogInvocationQuery<TLogger> WithMessage(string? message)
         {
             _message = message;
             _messageRegexPattern = null;
@@ -162,13 +102,7 @@ namespace Moq
             return this;
         }
 
-        /// <summary>
-        /// Verify that a log was made with a message matching the specified regular expression
-        /// pattern.
-        /// </summary>
-        /// <param name="messageRegexPattern">The regular expression pattern.</param>
-        /// <returns>The same instance of <see cref="LogInvocationQuery{TLogger}"/>.</returns>
-        public LogInvocationQuery<TLogger> WithMessageRegex(string? messageRegexPattern)
+        public ILogInvocationQuery<TLogger> WithMessageRegex(string? messageRegexPattern)
         {
             _message = null;
             _messageRegexPattern = messageRegexPattern;
@@ -176,15 +110,7 @@ namespace Moq
             return this;
         }
 
-        /// <summary>
-        /// Verify that a log was made with the message specified by the
-        /// <paramref name="matchMessage"/> expression.
-        /// </summary>
-        /// <param name="matchMessage">
-        /// An expression that defines whether a message is a match for verification.
-        /// </param>
-        /// <returns>The same instance of <see cref="LogInvocationQuery{TLogger}"/>.</returns>
-        public LogInvocationQuery<TLogger> WithMessage(Expression<Func<string, bool>>? matchMessage)
+        public ILogInvocationQuery<TLogger> WithMessage(Expression<Func<string, bool>>? matchMessage)
         {
             _message = null;
             _messageRegexPattern = null;
@@ -192,30 +118,14 @@ namespace Moq
             return this;
         }
 
-        /// <summary>
-        /// Verify that a log was made without an exception.
-        /// </summary>
-        /// <returns>The same instance of <see cref="LogInvocationQuery{TLogger}"/>.</returns>
-        public LogInvocationQuery<TLogger> WithoutException()
+        public ILogInvocationQuery<TLogger> WithoutException()
         {
             _exceptionExpression = _nullExceptionExpression;
             _exceptionType = null;
             return this;
         }
 
-        /// <summary>
-        /// Verify that a log was made with an exception.
-        /// </summary>
-        /// <param name="exceptionType">The type of expected exception.</param>
-        /// <param name="message">The message of the expected exception.</param>
-        /// <param name="messageRegex">
-        /// A regular expression pattern that matches the message of the expected exception.
-        /// </param>
-        /// <returns>The same instance of <see cref="LogInvocationQuery{TLogger}"/>.</returns>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// If <paramref name="exceptionType"/> is not assignable to the <see cref="Exception"/> type.
-        /// </exception>
-        public LogInvocationQuery<TLogger> WithException(
+        public ILogInvocationQuery<TLogger> WithException(
             Type? exceptionType = null,
             string? message = null,
             string? messageRegex = null)
@@ -282,12 +192,7 @@ namespace Moq
             return this;
         }
 
-        /// <summary>
-        /// Verify that a log was made with an exception.
-        /// </summary>
-        /// <typeparam name="TException">The type of the expected exception.</typeparam>
-        /// <returns>The same instance of <see cref="LogInvocationQuery{TLogger}"/>.</returns>
-        public LogInvocationQuery<TLogger> WithException<TException>()
+        public ILogInvocationQuery<TLogger> WithException<TException>()
             where TException : Exception
         {
             _exceptionExpression = _itIsNotNullExpression;
@@ -295,15 +200,7 @@ namespace Moq
             return this;
         }
 
-        /// <summary>
-        /// Verify that a log was made with an exception with the specified message.
-        /// </summary>
-        /// <param name="message">The message of the expected exception.</param>
-        /// <returns>The same instance of <see cref="LogInvocationQuery{TLogger}"/>.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// If <paramref name="message"/> is <see langword="null"/>.
-        /// </exception>
-        public LogInvocationQuery<TLogger> WithException(string message)
+        public ILogInvocationQuery<TLogger> WithException(string message)
         {
             if (message is null)
                 throw new ArgumentNullException(nameof(message));
@@ -322,16 +219,7 @@ namespace Moq
             return this;
         }
 
-        /// <summary>
-        /// Verify that a log was made with an exception with the specified message.
-        /// </summary>
-        /// <typeparam name="TException">The type of the expected exception.</typeparam>
-        /// <param name="message">The message of the expected exception.</param>
-        /// <returns>The same instance of <see cref="LogInvocationQuery{TLogger}"/>.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// If <paramref name="message"/> is <see langword="null"/>.
-        /// </exception>
-        public LogInvocationQuery<TLogger> WithException<TException>(string message)
+        public ILogInvocationQuery<TLogger> WithException<TException>(string message)
             where TException : Exception
         {
             if (message is null)
@@ -351,29 +239,12 @@ namespace Moq
             return this;
         }
 
-        /// <summary>
-        /// Verify that a log was made with an exception specified by the
-        /// <paramref name="matchException"/> expression.
-        /// </summary>
-        /// <param name="matchException">
-        /// An expression that defines whether an exception is a match for verification.
-        /// </param>
-        /// <returns>The same instance of <see cref="LogInvocationQuery{TLogger}"/>.</returns>
-        public LogInvocationQuery<TLogger> WithException(Expression<Func<Exception, bool>>? matchException)
+        public ILogInvocationQuery<TLogger> WithException(Expression<Func<Exception, bool>>? matchException)
         {
             return WithException<Exception>(matchException);
         }
 
-        /// <summary>
-        /// Verify that a log was made with an exception specified by the
-        /// <paramref name="matchException"/> expression.
-        /// </summary>
-        /// <typeparam name="TException">The type of the expected exception.</typeparam>
-        /// <param name="matchException">
-        /// An expression that defines whether an exception is a match for verification.
-        /// </param>
-        /// <returns>The same instance of <see cref="LogInvocationQuery{TLogger}"/>.</returns>
-        public LogInvocationQuery<TLogger> WithException<TException>(Expression<Func<TException, bool>>? matchException)
+        public ILogInvocationQuery<TLogger> WithException<TException>(Expression<Func<TException, bool>>? matchException)
             where TException : Exception
         {
             _exceptionExpression = matchException;
@@ -381,7 +252,15 @@ namespace Moq
             return this;
         }
 
-        internal void Verify(Mock<TLogger> mockLogger, Times? times = null, string? failMessage = null)
+        /// <summary>
+        /// Verifies that the specified mock logger performed the logging invocation defined by this instance of
+        /// <see cref="LogInvocationQuery{TLogger}"/>.
+        /// </summary>
+        /// <param name="mockLogger">The mock logger to verify.</param>
+        /// <param name="times">The number of times the logging is expected to be called. If <see langword="null"/>,
+        ///     <see cref="Times.AtLeastOnce"/> is used instead.</param>
+        /// <param name="failMessage">Message to show if verification fails.</param>
+        public void Verify(Mock<TLogger> mockLogger, Times? times = null, string? failMessage = null)
         {
             times ??= Times.AtLeastOnce();
 

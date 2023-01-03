@@ -23,8 +23,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_failure_at_trace()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .AtTrace();
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.AtTrace();
 
             var mockLogger = new MockLogger();
 
@@ -37,8 +38,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_failure_at_debug()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .AtDebug();
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.AtDebug();
 
             var mockLogger = new MockLogger();
 
@@ -51,8 +53,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_failure_at_information()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .AtInformation();
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.AtInformation();
 
             var mockLogger = new MockLogger();
 
@@ -65,8 +68,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_failure_at_warning()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .AtWarning();
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.AtWarning();
 
             var mockLogger = new MockLogger();
 
@@ -79,8 +83,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_failure_at_error()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .AtError();
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.AtError();
 
             var mockLogger = new MockLogger();
 
@@ -93,8 +98,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_failure_at_critical()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .AtCritical();
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.AtCritical();
 
             var mockLogger = new MockLogger();
 
@@ -107,8 +113,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_failure_at_log_level_expression()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .AtLogLevel(logLevel => logLevel >= LogLevel.Warning);
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.AtLogLevel(logLevel => logLevel >= LogLevel.Warning);
 
             var mockLogger = new MockLogger();
 
@@ -121,8 +128,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_failure_with_event_id()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .WithEventId(123);
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.WithEventId(123);
 
             var mockLogger = new MockLogger();
 
@@ -135,8 +143,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_failure_with_event_id_expression()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .WithEventId(eventId => eventId.Id == 123 && eventId.Name == "MyEventId");
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.WithEventId(eventId => eventId.Id == 123 && eventId.Name == "MyEventId");
 
             var mockLogger = new MockLogger();
 
@@ -149,8 +158,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_failure_with_message()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .WithMessage("My message");
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.WithMessage("My message");
 
             var mockLogger = new MockLogger();
 
@@ -163,8 +173,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_failure_with_message_regex()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .WithMessageRegex(@"^My message(?:\(s\))?$");
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.WithMessageRegex(@"^My message(?:\(s\))?$");
 
             var mockLogger = new MockLogger();
 
@@ -177,8 +188,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_failure_with_message_expression()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .WithMessage(message => message.Contains("My message"));
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.WithMessage(message => message.Contains("My message"));
 
             var mockLogger = new MockLogger();
 
@@ -191,8 +203,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_failure_with_without_exception()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .WithoutException();
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.WithoutException();
 
             var mockLogger = new MockLogger();
 
@@ -205,8 +218,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_failure_with_with_exception()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .WithException();
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.WithException();
 
             var mockLogger = new MockLogger();
 
@@ -219,8 +233,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_failure_with_with_exception_type_specified()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .WithException(typeof(InvalidOperationException));
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.WithException(typeof(InvalidOperationException));
 
             var mockLogger = new MockLogger();
 
@@ -233,8 +248,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_failure_with_with_exception_message_specified()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .WithException("My exception message");
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.WithException("My exception message");
 
             var mockLogger = new MockLogger();
 
@@ -247,8 +263,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_failure_with_with_exception_message_regex_specified()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .WithException(messageRegex: "[abc][123]");
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.WithException(messageRegex: "[abc][123]");
 
             var mockLogger = new MockLogger();
 
@@ -261,8 +278,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_failure_with_with_exception_type_and_message_specified()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .WithException(typeof(InvalidOperationException), "My exception message");
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.WithException(typeof(InvalidOperationException), "My exception message");
 
             var mockLogger = new MockLogger();
 
@@ -275,8 +293,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_failure_with_with_exception_type_and_message_regex_specified()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .WithException(typeof(InvalidOperationException), messageRegex: "[abc][123]");
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.WithException(typeof(InvalidOperationException), messageRegex: "[abc][123]");
 
             var mockLogger = new MockLogger();
 
@@ -289,8 +308,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_failure_with_with_exception_type_specified_generically()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .WithException<InvalidOperationException>();
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.WithException<InvalidOperationException>();
 
             var mockLogger = new MockLogger();
 
@@ -303,8 +323,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_failure_with_with_exception_message_and_type_specified_generically()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .WithException<InvalidOperationException>("My exception message");
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.WithException<InvalidOperationException>("My exception message");
 
             var mockLogger = new MockLogger();
 
@@ -317,8 +338,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_failure_with_with_exception_expression()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .WithException(ex => ex != null && ex.Message.Contains("abc"));
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.WithException(ex => ex != null && ex.Message.Contains("abc"));
 
             var mockLogger = new MockLogger();
 
@@ -331,8 +353,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_failure_with_with_exception_generic_expression()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .WithException<InvalidOperationException>(ex => ex != null && ex.Message.Contains("abc"));
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.WithException<InvalidOperationException>(ex => ex != null && ex.Message.Contains("abc"));
 
             var mockLogger = new MockLogger();
 
@@ -356,8 +379,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_success_at_trace()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .AtTrace();
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.AtTrace();
 
             var mockLogger = new MockLogger();
             mockLogger.Object.LogTrace("My message");
@@ -368,8 +392,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_success_at_debug()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .AtDebug();
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.AtDebug();
 
             var mockLogger = new MockLogger();
             mockLogger.Object.LogDebug("My message");
@@ -380,8 +405,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_success_at_information()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .AtInformation();
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.AtInformation();
 
             var mockLogger = new MockLogger();
             mockLogger.Object.LogInformation("My message");
@@ -392,8 +418,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_success_at_warning()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .AtWarning();
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.AtWarning();
 
             var mockLogger = new MockLogger();
             mockLogger.Object.LogWarning("My message");
@@ -404,8 +431,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_success_at_error()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .AtError();
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.AtError();
 
             var mockLogger = new MockLogger();
             mockLogger.Object.LogError("My message");
@@ -416,8 +444,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_success_at_critical()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .AtCritical();
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.AtCritical();
 
             var mockLogger = new MockLogger();
             mockLogger.Object.LogCritical("My message");
@@ -428,8 +457,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_success_at_log_level_expression()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .AtLogLevel(logLevel => logLevel >= LogLevel.Warning);
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.AtLogLevel(logLevel => logLevel >= LogLevel.Warning);
 
             var mockLogger = new MockLogger();
             mockLogger.Object.LogCritical("My message");
@@ -440,8 +470,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_success_with_event_id()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .WithEventId(123);
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.WithEventId(123);
 
             var mockLogger = new MockLogger();
             mockLogger.Object.LogInformation(123, "My message");
@@ -452,8 +483,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_success_with_event_id_expression()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .WithEventId(eventId => eventId.Id == 123 && eventId.Name == "MyEventId");
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.WithEventId(eventId => eventId.Id == 123 && eventId.Name == "MyEventId");
 
             var mockLogger = new MockLogger();
             mockLogger.Object.LogInformation(new EventId(123, "MyEventId"), "My message");
@@ -464,8 +496,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_success_with_message()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .WithMessage("My message");
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.WithMessage("My message");
 
             var mockLogger = new MockLogger();
             mockLogger.Object.LogInformation("My message");
@@ -476,8 +509,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_success_with_message_regex()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .WithMessageRegex(@"^My message(?:\(s\))?$");
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.WithMessageRegex(@"^My message(?:\(s\))?$");
 
             var mockLogger = new MockLogger();
             mockLogger.Object.LogInformation("My message(s)");
@@ -488,8 +522,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_success_with_message_expression()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .WithMessage(message => message.Contains("My message"));
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.WithMessage(message => message.Contains("My message"));
 
             var mockLogger = new MockLogger();
             mockLogger.Object.LogInformation("My message");
@@ -500,8 +535,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_success_with_without_exception()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .WithoutException();
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.WithoutException();
 
             var mockLogger = new MockLogger();
             mockLogger.Object.LogInformation("My message");
@@ -512,8 +548,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_success_with_with_exception()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .WithException();
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.WithException();
 
             var mockLogger = new MockLogger();
             mockLogger.Object.LogInformation(new InvalidOperationException(), "My message");
@@ -524,8 +561,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_success_with_with_exception_type_specified()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .WithException(typeof(InvalidOperationException));
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.WithException(typeof(InvalidOperationException));
 
             var mockLogger = new MockLogger();
             mockLogger.Object.LogInformation(new InvalidOperationException(), "My message");
@@ -536,8 +574,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_success_with_with_exception_message_specified()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .WithException("My exception message");
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.WithException("My exception message");
 
             var mockLogger = new MockLogger();
             mockLogger.Object.LogInformation(new InvalidOperationException("My exception message"), "My message");
@@ -548,8 +587,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_success_with_with_exception_message_regex_specified()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .WithException(messageRegex: "[abc][123]");
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.WithException(messageRegex: "[abc][123]");
 
             var mockLogger = new MockLogger();
             mockLogger.Object.LogInformation(new InvalidOperationException("My a1 exception message"), "My message");
@@ -560,8 +600,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_success_with_with_exception_type_and_message_specified()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .WithException(typeof(InvalidOperationException), "My exception message");
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.WithException(typeof(InvalidOperationException), "My exception message");
 
             var mockLogger = new MockLogger();
             mockLogger.Object.LogInformation(new InvalidOperationException("My exception message"), "My message");
@@ -572,8 +613,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_success_with_with_exception_type_and_message_regex_specified()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .WithException(typeof(InvalidOperationException), messageRegex: "[abc][123]");
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.WithException(typeof(InvalidOperationException), messageRegex: "[abc][123]");
 
             var mockLogger = new MockLogger();
             mockLogger.Object.LogInformation(new InvalidOperationException("My a1 exception message"), "My message");
@@ -584,8 +626,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_success_with_with_exception_type_specified_generically()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .WithException<InvalidOperationException>();
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.WithException<InvalidOperationException>();
 
             var mockLogger = new MockLogger();
             mockLogger.Object.LogInformation(new InvalidOperationException(), "My message");
@@ -596,8 +639,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_success_with_with_exception_message_and_type_specified_generically()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .WithException<InvalidOperationException>("My exception message");
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.WithException<InvalidOperationException>("My exception message");
 
             var mockLogger = new MockLogger();
             mockLogger.Object.LogInformation(new InvalidOperationException("My exception message"), "My message");
@@ -608,8 +652,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_success_with_with_exception_expression()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .WithException(ex => ex != null && ex.Message.Contains("abc"));
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.WithException(ex => ex != null && ex.Message.Contains("abc"));
 
             var mockLogger = new MockLogger();
             mockLogger.Object.LogInformation(new InvalidOperationException("My abc exception message"), "My message");
@@ -620,8 +665,9 @@ namespace Moq.UnitTests
         [Fact]
         public void Verify_success_with_with_exception_generic_expression()
         {
-            var logInvocationQuery = new LogInvocationQuery<TestingLogger>()
-                .WithException<InvalidOperationException>(ex => ex != null && ex.Message.Contains("abc"));
+            var logInvocationQuery = new LogInvocationQuery<TestingLogger>();
+
+            logInvocationQuery.WithException<InvalidOperationException>(ex => ex != null && ex.Message.Contains("abc"));
 
             var mockLogger = new MockLogger();
             mockLogger.Object.LogInformation(new InvalidOperationException("My abc exception message"), "My message");

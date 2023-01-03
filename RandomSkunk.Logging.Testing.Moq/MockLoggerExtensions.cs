@@ -10,12 +10,9 @@ namespace Moq
     public static class MockLoggerExtensions
     {
         /// <summary>
-        /// Specifies a default setup on the mock logger for a call to the
-        /// <see cref="TestingLogger.Log"/> method.
+        /// Specifies a default setup on the mock logger for a call to the <see cref="TestingLogger.Log"/> method.
         /// </summary>
-        /// <typeparam name="TLogger">
-        /// The type of <see cref="TestingLogger"/> that is being mocked.
-        /// </typeparam>
+        /// <typeparam name="TLogger">The type of <see cref="TestingLogger"/> that is being mocked.</typeparam>
         /// <param name="mockLogger">The mock logger.</param>
         /// <returns>The setup object for the log method.</returns>
         public static ISetup<TLogger> SetupLog<TLogger>(
@@ -32,18 +29,16 @@ namespace Moq
         /// <summary>
         /// Verifies that a specific log invocation was performed on the mock logger.
         /// </summary>
-        /// <typeparam name="TLogger">
-        /// The type of <see cref="TestingLogger"/> that is being mocked.
-        /// </typeparam>
+        /// <typeparam name="TLogger">The type of <see cref="TestingLogger"/> that is being mocked.</typeparam>
         /// <param name="mockLogger">The mock logger.</param>
-        /// <param name="configureQuery">
-        /// A function that configures the query that defines the log invocation.
-        /// </param>
-        /// <param name="times">The number of times a method is expected to be called.</param>
+        /// <param name="configureQuery">A function that configures the query that defines the log invocation. If
+        ///     <see langword="null"/>, the query is not configured and any log invocation will match.</param>
+        /// <param name="times">The number of times a method is expected to be called. If <see langword="null"/>,
+        ///     <see cref="Times.AtLeastOnce"/> is used.</param>
         /// <param name="failMessage">Message to show if verification fails.</param>
         public static void VerifyLog<TLogger>(
             this Mock<TLogger> mockLogger,
-            Action<LogInvocationQuery<TLogger>>? configureQuery,
+            Action<ILogInvocationQuery<TLogger>>? configureQuery,
             Times? times = null,
             string? failMessage = null)
             where TLogger : TestingLogger
@@ -59,11 +54,10 @@ namespace Moq
         /// <summary>
         /// Verifies that any log invocations were performed on the mock logger.
         /// </summary>
-        /// <typeparam name="TLogger">
-        /// The type of <see cref="TestingLogger"/> that is being mocked.
-        /// </typeparam>
+        /// <typeparam name="TLogger">The type of <see cref="TestingLogger"/> that is being mocked.</typeparam>
         /// <param name="mockLogger">The mock logger.</param>
-        /// <param name="times">The number of times a method is expected to be called.</param>
+        /// <param name="times">The number of times a method is expected to be called. If <see langword="null"/>,
+        ///     <see cref="Times.AtLeastOnce"/> is used.</param>
         /// <param name="failMessage">Message to show if verification fails.</param>
         public static void VerifyLog<TLogger>(
             this Mock<TLogger> mockLogger,
