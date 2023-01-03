@@ -12,10 +12,11 @@ namespace Moq.UnitTests
         {
             var mockLogger = new MockLogger();
 
-            Action act = () => mockLogger.VerifyLog(log => log.AtInformation().WithMessage("Hello, world!"));
+            mockLogger.Object.LogInformation("Hello, world!");
 
-            act.Should().ThrowExactly<MockException>()
-                .WithMessage("*logger => logger.Log(LogLevel.Information, It.IsAny<EventId>(), \"Hello, world!\", It.IsAny<Exception>())*");
+            mockLogger.Invoking(log => log.VerifyLog(Times.Never()))
+                .Should().ThrowExactly<MockException>()
+                .WithMessage("*logger => logger.Log(It.IsAny<LogLevel>(), It.IsAny<EventId>(), It.IsAny<string>(), It.IsAny<Exception>())*");
         }
 
         [Fact]

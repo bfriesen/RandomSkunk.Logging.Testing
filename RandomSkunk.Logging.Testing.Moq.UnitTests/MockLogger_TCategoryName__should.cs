@@ -17,6 +17,11 @@ namespace Moq.UnitTests
 
         [Theory]
         [InlineData(LogLevel.Trace)]
+        [InlineData(LogLevel.Debug)]
+        [InlineData(LogLevel.Information)]
+        [InlineData(LogLevel.Warning)]
+        [InlineData(LogLevel.Error)]
+        [InlineData(LogLevel.Critical)]
         public void Set_CallBase_to_true_and_LogLevel_in_constructor(LogLevel logLevel)
         {
             var mockLogger = new MockLogger<MockLogger_TCategoryName__should>(logLevel);
