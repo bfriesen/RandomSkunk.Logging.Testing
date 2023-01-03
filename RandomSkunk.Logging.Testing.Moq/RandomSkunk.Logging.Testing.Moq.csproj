@@ -4,11 +4,11 @@
     <TargetFrameworks>net461;net6.0;netstandard2.0;netstandard2.1;</TargetFrameworks>
 	<RootNamespace>Moq</RootNamespace>
 
-	<PackageVersion>1.0.0</PackageVersion>
+	<PackageVersion>1.1.0</PackageVersion>
     <Title>RandomSkunk.Logging.Testing.Moq</Title>
     <Description>Mock logger implementations for Moq and Microsoft.Extensions.Logging.</Description>
 	<Authors>Brian Friesen</Authors>
-	<Copyright>Copyright 2022 (c) Brian Friesen. All rights reserved.</Copyright>
+	<Copyright>Copyright 2022-2023 (c) Brian Friesen. All rights reserved.</Copyright>
 
 	<PackageId>RandomSkunk.Logging.Testing.Moq</PackageId>
 	<PackageProjectUrl>https://github.com/bfriesen/RandomSkunk.Logging.Testing.Moq</PackageProjectUrl>

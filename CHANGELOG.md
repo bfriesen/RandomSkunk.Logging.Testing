@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+## [1.1.0] - 2023-01-02
+
 ### Added
 
 - Add overload of `VerifyLog` that doesn't have a `configureQuery` parameter, which makes verifying any log invocation easier.
@@ -23,5 +25,6 @@ and this project adheres to [Semantic Versioning].
 
 [Keep a Changelog]: https://keepachangelog.com/en/1.0.0/
 [Semantic Versioning]: https://semver.org/spec/v2.0.0.html
-[1.0.0]: https://github.com/bfriesen/RandomSkunk.Logging.Testing.Moq/compare/b77fae71a17716c64e37cce545223d3027f049e8...v1.0.0
-[Unreleased]: https://github.com/bfriesen/RandomSkunk.Logging.Testing.Moq/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/bfriesen/RandomSkunk.Logging.Testing.Moq/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/bfriesen/RandomSkunk.Logging.Testing.Moq/compare/v1.0.0...v1.1.0
+[1.0.0]: https://github.com/bfriesen/RandomSkunk.Logging.Testing.Moq/compare/v0.0.0...v1.0.0
